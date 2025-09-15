@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct MiniChatAppApp: App {
+struct MiniChatApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
