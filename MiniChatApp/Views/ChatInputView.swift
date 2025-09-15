@@ -40,21 +40,39 @@ struct ChatInputView: View {
             
             // Main input area
             HStack {
+                // TextField bound to viewModel.currentInput
                 TextField("Type a message...", text: $viewModel.currentInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .onSubmit {
+                        viewModel.sendMessage() // Submit on return key
+                    }
                 
+                // Loading indicator or send button
                 if viewModel.isLoading {
                     ProgressView()
                         .scaleEffect(0.8)
                 } else {
-                    Button("Send") {
-                        // TODO: Call viewModel.sendMessage()
+                    Button("Send"){
+                        viewModel.sendMessage()
                     }
                     .disabled(!viewModel.canSendMessage)
+                    .padding(.leading, 4)
                 }
             }
             .padding()
             .background(Color(UIColor.systemBackground))
         }
+    }
+}
+
+
+struct ChatInputView_Previews: PreviewProvider {
+    static var previews: some View {
+        // Create a ChatViewModel with a MockAIService for preview
+        let viewModel = ChatViewModel(aiService: MockAIService())
+        
+        ChatInputView(viewModel: viewModel)
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
