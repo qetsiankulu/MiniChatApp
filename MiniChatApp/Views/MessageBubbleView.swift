@@ -4,32 +4,39 @@ struct MessageBubbleView: View {
     let message: Message
     
     var body: some View {
-        // TODO: Implement message bubble UI
-        // Requirements:
-        // 1. Display message content
-        // 2. Different styling for user vs assistant messages:
-        //    - User: blue background, white text, trailing alignment
-        //    - Assistant: gray background, primary text, leading alignment
-        // 3. Proper bubble shape with rounded corners
-        // 4. Appropriate padding inside bubbles
-        // 5. Proper alignment within parent (HStack with Spacer())
-        // 6. Optional: Display timestamp
-        //
-        // Hints:
-        // - Use HStack with Spacer() for alignment
-        // - Use .background() modifier with RoundedRectangle
-        // - Consider Color.blue vs Color.gray for backgrounds
-        // - Use .foregroundColor() for text color
-        // - message.isFromUser determines styling
-        
         HStack {
-            Text("TODO: Implement message bubble")
-                .padding()
-                .background(Color.gray)
-                .cornerRadius(12)
+            if message.isFromUser {
+                userBubble()
+            } else {
+                assistantBubble()
+            }
         }
         .padding(.horizontal)
         .padding(.vertical, 2)
+    }
+    
+    // MARK: - User message bubble
+    @ViewBuilder
+    private func userBubble() -> some View {
+        Spacer() // Push to the right
+        Text(message.content)
+            .padding(10)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(12)
+            .frame(maxWidth: 250, alignment: .trailing)
+    }
+    
+    // MARK: - Assistant message bubble
+    @ViewBuilder
+    private func assistantBubble() -> some View {
+        Text(message.content)
+            .padding(10)
+            .background(Color.gray.opacity(0.2))
+            .foregroundColor(.primary)
+            .cornerRadius(12)
+            .frame(maxWidth: 250, alignment: .leading)
+        Spacer() // Push to the left
     }
 }
 
