@@ -30,7 +30,7 @@ class MockAIService: AIServiceProtocol {
           case .question:
               return "❓ That's a great question! Let me help you with that."
           case .codeRelated:
-              return "💻 I'd love to help with iOS development!"
+              return "💻 I'd love to help with any programming questions you may have!"
           case .weather:
               return "🌤 I'm a simple assistant and can't check real weather, but I hope it's nice where you are! Is there anything else I can help with?"
           case .swift:
