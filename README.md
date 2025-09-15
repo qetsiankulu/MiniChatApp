@@ -3,7 +3,7 @@
 **Time Limit: 2 Hours**
 
 ## Overview
-Build a simplified chat interface that simulates a conversation with an AI assistant. This test evaluates your SwiftUI skills, MVVM architecture understanding, and ability to create clean, maintainable code.
+A simplified chat interface that simulates a conversation with an Mock AI assistant
 
 ## Requirements
 ### Core Features (Must Have)
@@ -14,16 +14,40 @@ Build a simplified chat interface that simulates a conversation with an AI assis
 5. **Auto-scroll**: Automatically scroll to newest messages
 
 ### Technical Requirements
-- Use **SwiftUI** for all UI components
-- Implement **MVVM pattern** with proper separation of concerns
-- Handle basic **error states** (empty messages, etc.)
-- Use **async/await** for simulated network delays
+- Used **SwiftUI** for all UI components
+- Implemented **MVVM pattern** with proper separation of concerns
+- Handled basic **error states** (empty messages, etc.)
+- Used **async/await** for simulated network delays
 - Implement proper **state management**
 
 ### ✅ Features Implemented
-
 - [x] **Mock AI Service** – Simulates an AI response system with network delay, random errors, and context-aware replies (greetings, questions, code-related, or default)
 - [x] **Chat ViewModel** – Manages chat state, handles user input, communicates asynchronously with the AI service, and updates UI state including loading and error messages
+- [x] **iOS Specifications** – Runs on iOS 16+ 
 
-### 🎓 What I Learned
-- 
+- [x] **ChatInputView** – TextField for user input, Send button enabled/disabled based on `canSendMessage`, submit on return key, loading indicator with `ProgressView`, error message display with dismiss button, proper padding and background styling.
+
+- [x] **ChatView** – Main chat screen with VStack layout:
+    - Empty state view when there are no messages.
+    - ScrollView + LazyVStack for messages.
+    - ScrollViewReader for auto-scrolling to the newest message.
+    - Smooth animation for auto-scroll when new messages arrive.
+    - ChatInputView pinned at the bottom.
+    - Clear button in navigation bar to reset chat.
+    
+- [x] **MessageBubbleView** – Displays individual messages with:
+    - Separate styling for user vs assistant.
+    - Rounded corners and padding inside bubbles.
+    - Max width for readability.
+    - Spacer usage for proper alignment.
+    - Refactored into two helper methods: `userBubble()` and `assistantBubble()` for maintainability.
+    
+    - [x] **Mock AI Service Responses with Emojis** – Added friendly emojis to assistant replies for greetings, questions, code-related messages, weather, and Swift explanations to make interactions more engaging and expressive.
+
+### 🚀 Potential Improvements
+
+- Add more **text animations** for a lively chat experience, such as animated typing dots, smooth message fade-ins  
+- Add an **option to search messages** within the chat session for easy reference to previous conversations
+- Integrate a **real AI API** (e.g., OpenAI, GPT) to provide dynamic chatbot responses instead of static mock replies.   
+- Include **message timestamps** or “read receipts” for a more realistic chat interface.  
+

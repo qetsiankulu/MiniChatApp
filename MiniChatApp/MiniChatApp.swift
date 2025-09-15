@@ -1,5 +1,5 @@
 //
-//  MiniChatAppApp.swift
+//  MiniChatApp.swift
 //  MiniChatApp
 //
 //  Created by Qetsia Nkulu  on 9/15/25.

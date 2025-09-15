@@ -12,13 +12,6 @@ class MockAIService: AIServiceProtocol {
     }
     
     func generateResponse(for userMessage: String) async throws -> String {
-        // Example responses:
-        // - Greetings ("hello", "hi") → "Hi there! How can I help you today?"
-        // - Questions (contains "?") → "That's a great question! Let me help you with that."
-        // - Code-related ("swift", "ios", "app") → "I'd love to help with iOS development!"
-        // - Default → "I'm here to help! What would you like to know?"
-        
-        
         // 1. Simulate network delay
         try await simulateNetworkDelay()
         
@@ -32,21 +25,21 @@ class MockAIService: AIServiceProtocol {
         
         // 4. Return based on category
         switch category {
-        case .greeting:
-            return  "Hi there! How can I help you today?"
-        case .question:
-            return "That's a great question! Let me help you with that."
-        case .codeRelated:
-               return "I'd love to help with iOS development!"
-           case .default:
-               return "I'm here to help! What would you like to know?"
-            
+          case .greeting:
+              return "👋 Hi there! I'm your assistant. How can I help you today?"
+          case .question:
+              return "❓ That's a great question! Let me help you with that."
+          case .codeRelated:
+              return "💻 I'd love to help with iOS development!"
+          case .weather:
+              return "🌤 I'm a simple assistant and can't check real weather, but I hope it's nice where you are! Is there anything else I can help with?"
+          case .swift:
+              return "🧑‍💻 Swift is Apple's programming language for iOS development! It's fast, safe, and expressive. Are you working on an iOS project?"
+          case .default:
+              return "🤖 I'm here to help! What would you like to know?"
         }
         
-        
-  
     }
-    
 
     private func simulateNetworkDelay() async throws {
         // Simulate 1-2 second network delay
@@ -66,21 +59,28 @@ class MockAIService: AIServiceProtocol {
     
         let lowercased = message.lowercased()
         
-        if lowercased.contains("hello") || lowercased.contains("hi") {
-             return .greeting
-         } else if lowercased.contains("?") {
-             return .question
-         } else if lowercased.contains("swift") || lowercased.contains("ios") || lowercased.contains("app") {
-             return .codeRelated
-         } else {
-             return .default
-         }
+        // Custom responses for exact messages
+        if lowercased == "hello" || lowercased == "hi" || lowercased == "hello" {
+            return .greeting
+        } else if lowercased.contains("weather") {
+            return .weather
+        } else if lowercased.contains("swift") {
+            return .swift
+        } else if lowercased.contains("?") {
+            return .question
+        } else if lowercased.contains("ios") || lowercased.contains("app") {
+            return .codeRelated
+        } else {
+            return .default
+        }
     }
     
     private enum MessageCategory {
         case greeting
         case question
         case codeRelated
+        case weather       // additional category
+        case swift         // additional category
         case `default`
     }
 }

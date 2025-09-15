@@ -12,3 +12,6 @@ struct Message: Identifiable, Equatable {
         self.timestamp = Date()
     }
 }
+
+
+
