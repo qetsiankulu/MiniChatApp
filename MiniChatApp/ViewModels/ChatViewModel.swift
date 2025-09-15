@@ -15,21 +15,32 @@ class ChatViewModel: ObservableObject {
     }
     
     func sendMessage() {
-        // TODO: Implement message sending logic
-        // Requirements:
-        // 1. Validate input (non-empty after trimming whitespace)
-        // 2. Create user message and add to chat session
-        // 3. Clear current input
-        // 4. Set loading state to true
-        // 5. Use Task {} to call aiService.generateResponse() asynchronously
-        // 6. Handle success case: create assistant message and add to chat session
-        // 7. Handle error case: set errorMessage
-        // 8. Always set loading state to false
-        //
-        // Hints:
-        // - Use currentInput.trimmingCharacters(in: .whitespacesAndNewlines)
-        // - Don't forget to clear errorMessage on new attempts
-        // - Use do-catch block for async error handling
+        let trimmed = currentInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }  // Ensure the user has typed something meaningdful, if input is empty, do nothing
+        
+        // 1. Add user message
+        chatSession.addMessage(Message(content: trimmed, isFromUser: true))
+        
+        // 2. Reset input & error
+        currentInput = ""
+        errorMessage = nil
+        isLoading = true            // Waiting for AI response
+        
+        // 3. Call AI Service
+        Task {
+            defer {isLoading = false} // Always reset isLoading whether AI responds OR an error occurs
+            
+            // Call the AI service asynchronously and wait for its response.
+            // Add AI service response to chat session
+            do {
+                let response = try await aiService.generateResponse(for: trimmed)
+                let assistantMessage = Message(content: response, isFromUser: false)
+                chatSession.addMessage(assistantMessage)
+            } catch {
+                errorMessage = "Failed to get response: \(error.localizedDescription)"
+            }
+            
+        }
     }
     
     func clearChat() {
@@ -41,14 +52,11 @@ class ChatViewModel: ObservableObject {
     func clearError() {
         errorMessage = nil
     }
-    
-    // MARK: - Computed Properties
+
     var canSendMessage: Bool {
-        // TODO: Return whether message can be sent
-        // Should return true if:
-        // - Not currently loading
-        // - Current input is not empty after trimming
-        return false
+        // Return whether message can be sent
+        let trimmed = currentInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        return !isLoading && !trimmed.isEmpty
     }
     
     var messages: [Message] {
