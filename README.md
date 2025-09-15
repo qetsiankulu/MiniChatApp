@@ -41,8 +41,7 @@ A simplified chat interface that simulates a conversation with an Mock AI assist
     - Max width for readability.
     - Spacer usage for proper alignment.
     - Refactored into two helper methods: `userBubble()` and `assistantBubble()` for maintainability.
-    
-    - [x] **Mock AI Service Responses with Emojis** – Added friendly emojis to assistant replies for greetings, questions, code-related messages, weather, and Swift explanations to make interactions more engaging and expressive.
+- [x] **Mock AI Service Responses with Emojis** – Added friendly emojis to assistant replies to make interactions more engaging and expressive.
 
 ### 🚀 Potential Improvements
 
