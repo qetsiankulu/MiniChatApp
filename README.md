@@ -3,7 +3,7 @@
 **Time Limit: 2 Hours**
 
 ## Overview
-A simplified chat interface that simulates a conversation with an Mock AI assistant
+A simplified chat interface that simulates a conversation with an Mock AI assistant. This project was an interview test and had to be built in 2 hours. 
 
 ## Requirements
 ### Core Features (Must Have)
@@ -42,6 +42,20 @@ A simplified chat interface that simulates a conversation with an Mock AI assist
     - Spacer usage for proper alignment.
     - Refactored into two helper methods: `userBubble()` and `assistantBubble()` for maintainability.
 - [x] **Mock AI Service Responses with Emojis** – Added friendly emojis to assistant replies to make interactions more engaging and expressive.
+
+### 🖼️ Screens
+<img width="831" height="1356" alt="image" src="https://github.com/user-attachments/assets/0ce7e9ce-3885-4fdb-9170-ea4fb8e5d8f5" />
+
+### 📱 Demo 
+<div>
+    <a href="https://www.loom.com/share/3206d92fe76d4dfb8ab31bb7b16be608">
+      <p>MiniChatApp - 2 October 2025 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/3206d92fe76d4dfb8ab31bb7b16be608">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/3206d92fe76d4dfb8ab31bb7b16be608-876da53f81cb458b-full-play.gif">
+    </a>
+  </div>
+
 
 ### 🚀 Potential Improvements
 
